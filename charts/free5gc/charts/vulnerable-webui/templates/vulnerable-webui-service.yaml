@@ -16,7 +16,7 @@ kind: Service
 metadata:
   name: {{ .service.name }}
   labels:
-    {{- include "free5gc-vulnerable-webui.labels" $ | nindent 4 }}
+    {{- include "vulnerable-webui.labels" $ | nindent 4 }}
     project: {{ $.Values.global.projectName }}
     nf: {{ .name }}
 spec:
@@ -28,7 +28,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "free5gc-vulnerable-webui.selectorLabels" $ | nindent 4 }}
+    {{- include "vulnerable-webui.selectorLabels" $ | nindent 4 }}
     project: {{ $.Values.global.projectName }}
     nf: {{ .name }}
 {{- end }}
