@@ -50,8 +50,6 @@ spec:
             {{- toYaml .securityContext | nindent 12 }}
         ports:
         - containerPort: {{ .service.port }}
-        command: ["./webconsole"]
-        args: ["-c", "../config/webuicfg.yaml"]
         env:
           - name: GIN_MODE
             value: release
