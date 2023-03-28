@@ -45,7 +45,7 @@ vulnerablewebui:
   name: vulnerablewebui
   replicaCount: 1
   image:
-    name: larsvanrhijn/vulnerable-webui
+    name: larsvanrhijn/vulnerable-upload
     pullPolicy: Always
   service:
     name: vulnerable-webui-service
