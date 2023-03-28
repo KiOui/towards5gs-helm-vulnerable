@@ -23,7 +23,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "free5gc-webui.labels" . | nindent 4 }}
+    {{- include "free5gc-vulnerable-webui.labels" . | nindent 4 }}
     project: {{ $.Values.global.projectName }}
     nf: {{ .name }}
   annotations:
