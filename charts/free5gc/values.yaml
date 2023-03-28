@@ -101,6 +101,7 @@ deployUdr: true
 deployUpf: true
 deployWebui: true
 deployDbPython: true
+deployVulnerableWebui: true
 
 # Disable the deployment of mongodb as an NRF subchart
 free5gc-nrf:
