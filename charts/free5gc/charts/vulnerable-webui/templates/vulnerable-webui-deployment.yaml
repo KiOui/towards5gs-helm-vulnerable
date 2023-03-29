@@ -82,10 +82,4 @@ spec:
       tolerations:
         {{- toYaml .tolerations | nindent 8 }}
 
-      volumes:
-      - name: {{ .volume.name }}
-        projected:
-          sources:
-          - configMap:
-              name: {{ .configmap.name }}
 {{- end }}
