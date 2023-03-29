@@ -32,7 +32,7 @@ vulnerablewebui:
     name: vulnerable-webui-service
     type: NodePort
     port: 80
-    nodePort: 30500
+    nodePort: 30600
   configmap:
     name: vulnerable-webui-configmap
   podAnnotations: {}
