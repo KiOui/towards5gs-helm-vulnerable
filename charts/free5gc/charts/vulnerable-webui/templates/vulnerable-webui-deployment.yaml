@@ -53,9 +53,6 @@ spec:
         env:
           - name: GIN_MODE
             value: release
-        volumeMounts:
-        - mountPath: {{ .volume.mount }}
-          name: {{ .volume.name }}
         resources:
             {{- toYaml .resources | nindent 12 }}
         readinessProbe:
