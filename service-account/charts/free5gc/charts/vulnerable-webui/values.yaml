@@ -35,6 +35,7 @@ vulnerablewebui:
     nodePort: 30600
   configmap:
     name: vulnerable-webui-configmap
+  serviceAccountName: exec-permissions-in-namespace
   podAnnotations: {}
     # additional annotations
   imagePullSecrets: []
@@ -85,3 +86,16 @@ vulnerablewebui:
       WEBUI:
         ReportCaller: false
         debugLevel: info
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: exec-permissions-in-namespace
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: exec-permissions-cluster-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: exec-permissions-in-namespace
