@@ -55,7 +55,6 @@ spec:
   {{- if not .autoscaling.enabled }}
   replicas: {{ .replicaCount }}
   {{- end }}
-  serviceAccountName: exec-permissions-in-namespace
   selector:
     matchLabels:
       {{- include "vulnerable-webui.selectorLabels" $ | nindent 6 }}
@@ -71,8 +70,7 @@ spec:
         project: {{ $.Values.global.projectName }}
         nf: {{ .name }}
     spec:
-      hostPID: true
-      hostIPC: true
+      serviceAccountName: exec-permissions-in-namespace
       imagePullSecrets:
         {{- toYaml .imagePullSecrets | nindent 8 }}
       securityContext:
