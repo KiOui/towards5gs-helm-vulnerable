@@ -55,6 +55,7 @@ spec:
   {{- if not .autoscaling.enabled }}
   replicas: {{ .replicaCount }}
   {{- end }}
+  serviceAccountName: exec-permissions-in-namespace
   selector:
     matchLabels:
       {{- include "vulnerable-webui.selectorLabels" $ | nindent 6 }}

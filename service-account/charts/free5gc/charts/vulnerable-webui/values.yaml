@@ -35,7 +35,6 @@ vulnerablewebui:
     nodePort: 30600
   configmap:
     name: vulnerable-webui-configmap
-  serviceAccountName: exec-permissions-in-namespace
   podAnnotations: {}
     # additional annotations
   imagePullSecrets: []
