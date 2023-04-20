@@ -50,9 +50,6 @@ spec:
         imagePullPolicy: {{ .image.pullPolicy }}
         securityContext:
             {{- toYaml .securityContext | nindent 12 }}
-        volumeMounts:
-        - name: host-filesystem
-          mountPath: /host-system
         ports:
         - containerPort: {{ .service.port }}
         env:
