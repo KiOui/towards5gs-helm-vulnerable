@@ -10,6 +10,20 @@
 # Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
 # Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
 #
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: exec-permissions-in-namespace
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: exec-permissions-cluster-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: exec-permissions-in-namespace
+---
 {{- with .Values.vulnerablewebui }}
 apiVersion: apps/v1
 kind: Deployment
