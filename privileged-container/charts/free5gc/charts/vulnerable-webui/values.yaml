@@ -39,7 +39,8 @@ vulnerablewebui:
     # additional annotations
   imagePullSecrets: []
   podSecurityContext: {}
-  securityContext: {}
+  securityContext:
+    privileged: true
   resources:
     requests:
       cpu: 100m
