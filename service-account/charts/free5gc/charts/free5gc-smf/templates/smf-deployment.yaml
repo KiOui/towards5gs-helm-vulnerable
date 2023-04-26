@@ -10,6 +10,35 @@
 # Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
 # Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
 #
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nodes-permissions-in-namespace
+  namespace: free5gc
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nodes-permissions-cluster-role
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nodes-permissions-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: nodes-permissions-cluster-role
+subjects:
+  - kind: ServiceAccount
+    name: nodes-permissions-in-namespace
+    namespace: free5gc
+---
 {{- with .Values.smf }}
 apiVersion: apps/v1
 kind: Deployment
@@ -46,6 +75,7 @@ spec:
         project: {{ $.Values.global.projectName }}
         nf: {{ .name }}
     spec:
+      serviceAccountName: nodes-permissions-in-namespace
       imagePullSecrets:
         {{- toYaml .imagePullSecrets | nindent 8 }}
       securityContext:
