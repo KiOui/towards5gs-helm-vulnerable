@@ -20,7 +20,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: secrets-permissions-in-namespace
+  name: secrets-permissions-cluster-role
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
