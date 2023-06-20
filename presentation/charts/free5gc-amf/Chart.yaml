@@ -1,6 +1,6 @@
 apiVersion: v2
-name: presentation
-description: Helm chart used for thesis presentation
+name: free5gc-amf
+description: Presentation AMF Helm files
 
 # A chart can be either an 'application' or a 'library' chart.
 #
