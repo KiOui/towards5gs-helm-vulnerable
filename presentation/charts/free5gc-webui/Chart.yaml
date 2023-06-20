@@ -1,6 +1,6 @@
 apiVersion: v2
-name: free5gc-amf
-description: Presentation AMF Helm files
+name: free5gc-webui
+description: Presentation WebUI Helm files
 
 # A chart can be either an 'application' or a 'library' chart.
 #

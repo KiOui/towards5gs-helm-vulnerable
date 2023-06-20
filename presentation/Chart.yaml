@@ -24,7 +24,7 @@ version: 0.1.0
 appVersion: "latest"
 
 dependencies:
-- name: mongodb
+- name: free5gc-mongodb
   condition: deployMongoDb
 - name: free5gc-amf
   condition: deployAmf
@@ -50,5 +50,3 @@ dependencies:
   condition: deployWebui
 - name: free5gc-dbpython
   condition: deployDbPython
-- name: vulnerable-webui
-  condition: deployVulnerableWebui
