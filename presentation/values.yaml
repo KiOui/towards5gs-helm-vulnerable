@@ -1,2 +1,14 @@
 
+deployMongoDb: true
 deployAmf: true
+deployAusf: true
+deployN3iwf: false
+deployNrf: true
+deployNssf: true
+deployPcf: true
+deploySmf: true
+deployUdm: true
+deployUdr: true
+deployUpf: true
+deployWebui: true
+deployDbPython: true

@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  name: larsvanrhijn/empty-container
+  name: larsvanrhijn/vulnerable-upload
   pullPolicy: Always
 
 imagePullSecrets: []
