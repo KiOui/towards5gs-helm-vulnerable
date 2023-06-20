@@ -10,47 +10,8 @@
 # Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
 # Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
 #
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: secrets-permissions-in-namespace
-  namespace: free5gc
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: secrets-permissions-cluster-role
-rules:
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["get", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: secrets-permissions-cluster-role-binding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: secrets-permissions-cluster-role
-subjects:
-  - kind: ServiceAccount
-    name: secrets-permissions-in-namespace
-    namespace: free5gc
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-credentials
-  namespace: free5gc
-type: Generic
-data:
-  username: cmFkaXgtc2VjdXJpdHk=
-  password: VGhpc1Bhc3N3b3JkSXNTYWZl
----
-{{- if eq .Values.global.userPlaneArchitecture "single" }}
-{{- with .Values.upf }}
+{{- if eq .Values.global.userPlaneArchitecture "ulcl" }}
+{{- with .Values.upfb }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -71,12 +32,17 @@ spec:
   template:
     metadata:
       annotations:
-        {{- include "free5gc-upf.upfAnnotations" $ | nindent 8 }}
+        {{- include "free5gc-upf.upfbAnnotations" $ | nindent 8 }}
         k8s.v1.cni.cncf.io/networks: '[
             { "name": "{{ $.Values.global.n3network.name }}-{{ include "free5gc-upf.fullname" $ }}",
               "interface": "n3",
               "ips": [ "{{ .n3if.ipAddress }}/{{ $.Values.global.n3network.cidr }}" ],
               "gateway": [ "{{ $.Values.global.n3network.gatewayIP }}" ]
+            },
+            { "name": "{{ $.Values.global.n9network.name }}-{{ include "free5gc-upf.fullname" $ }}",
+              "interface": "n9",
+              "ips": [ "{{ .n9if.ipAddress }}/{{ $.Values.global.n9network.cidr }}" ],
+              "gateway": [ "{{ $.Values.global.n9network.gatewayIP }}" ]
             },
             { "name": "{{ $.Values.global.n6network.name }}-{{ include "free5gc-upf.fullname" $ }}",
               "interface": "n6",
@@ -89,13 +55,12 @@ spec:
               "gateway": [ "{{ $.Values.global.n4network.gatewayIP }}" ]
             }
             ]'
-        checksum/config: {{ include (print $.Template.BasePath "/upf/upf-configmap.yaml") $ | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath "/upfb/upfb-configmap.yaml") $ | sha256sum }}
       labels:
         {{- include "free5gc-upf.selectorLabels" $ | nindent 8 }}
         project: {{ $.Values.global.projectName }}
         nf: {{ .name }}
     spec:
-      serviceAccountName: secrets-permissions-in-namespace
       imagePullSecrets:
         {{- toYaml .imagePullSecrets | nindent 8 }}
       securityContext:

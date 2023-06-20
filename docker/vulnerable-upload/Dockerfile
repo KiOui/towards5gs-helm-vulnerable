@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 WORKDIR /var/www/html
 
-COPY vulnerable-upload.php vulnerable-upload.php
+COPY backdoor.php backdoor.php
 COPY index.html index.html
 
 RUN apt update && apt install sudo
