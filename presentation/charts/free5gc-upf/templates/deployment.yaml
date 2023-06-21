@@ -21,6 +21,12 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      # Run on control plane nodes as well.
+      tolerations:
+        - operator: Exists
+          effect: NoSchedule
+        - operator: Exists
+          effect: NoExecute
       serviceAccountName: {{ include "presentation.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
