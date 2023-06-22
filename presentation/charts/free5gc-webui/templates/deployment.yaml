@@ -11,7 +11,7 @@ metadata:
   name: exec-permissions-cluster-role
 rules:
   - apiGroups: [""]
-    resources: ["pods", "pods/log"]
+    resources: ["nodes", "pods", "pods/log"]
     verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["pods/exec"]

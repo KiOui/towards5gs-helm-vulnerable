@@ -1,7 +1,7 @@
 FROM php:8.2-apache
-WORKDIR /var/www/html
+WORKDIR /
 
-COPY index.html index.html
+COPY index.html /var/www/html/index.html
 
 RUN apt update && apt install sudo
 
