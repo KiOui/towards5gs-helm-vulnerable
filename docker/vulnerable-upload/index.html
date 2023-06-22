@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Web portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .login-portal-container {
+            max-width: 360px;
+            text-align: center;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .login-portal-container img {
+            margin-bottom: 20px;
+        }
+
+        .login-portal-container input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .login-portal-container input[type=text], .login-portal-container input[type=password] {
+            height: 26px;
+            padding: 10px 16px;
+            width: calc(100% - 32px);
+            font-size: 18px;
+            line-height: 1.3333333;
+            border-radius: 6px;
+            border: 1px solid rgba(37,38,95,0.2);
+            background-color: #F5F9FC;
+            color: #565656;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .login-portal-container input[type=submit] {
+            width: 100%;
+            color: white;
+            border-color: #2080ff;
+            margin-top: 14px;
+            height: 44px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            border-width: 1px;
+            padding: 4px 12px;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            background-color: #2080ff;
+            cursor: pointer;
+        }
+
+        .login-portal-container input[type=submit]:hover {
+            background-color: #2080ff;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
-    <h1>This is a web portal</h1>
+    <div class="center-container">
+        <div class="login-portal-container">
+            <img src="/free5gc-logo.png"/>
+            <input type="text" placeholder="Username"/>
+            <input type="password" placeholder="Password"/>
+            <input type="submit" value="Login"/>
+        </div>
+    </div>
 </body>
 </html>
